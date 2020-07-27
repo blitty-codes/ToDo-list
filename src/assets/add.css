@@ -1,0 +1,90 @@
+@import "./vars.css";
+
+@keyframes Addbutton {
+  from {
+    box-shadow: 5px 5px 10px 0 var(--black-shadow),
+      -3px -3px 10px 0 var(--white-shadow);
+  }
+  to {
+    box-shadow: inset 5px 5px 10px 0 var(--black-shadow),
+      inset -3px -3px 10px 0 var(--white-shadow);
+  }
+}
+
+.container {
+  width: 100%;
+  padding-top: 50px;
+
+  display: flex;
+
+  align-items: center;
+}
+
+  .addTask, .addToList {
+    height: 40px;
+
+    border: none;
+    border-radius: 50px;
+
+    outline: none;
+
+    /* text */
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--txt-color)
+  }
+
+  /* text input */
+  .addTask {
+    width: 60%;
+    margin-left: 10%;
+    padding-left: 3%;
+    padding-right: 3%;
+
+    box-shadow: inset 2px 6px 10px 0 var(--black-shadow),
+      inset -2px -5px 15px 0 var(--white-shadow);
+    
+    background-color: transparent;
+
+    font-family: var(--main-font);
+  }
+  /* When the text is underline/selected */
+  .addTask::selection {
+    background-color: rgb(134, 134, 134);
+    color: rgb(207, 207, 207);
+  }
+
+  /* Add button */
+  .addToList {
+    width: 10%;
+
+    padding-left: 10px;
+    padding-top: 5px;
+    margin-left: 10%;
+
+    box-shadow: 5px 5px 10px 0 var(--black-shadow),
+      -3px -3px 10px 0 var(--white-shadow);
+
+    background-color: transparent;
+  }
+  .addToList:hover {
+    cursor: pointer;
+  }
+  .addToList:active {
+    box-shadow: inset 5px 5px 10px 0 var(--black-shadow),
+      inset -3px -3px 10px 0 var(--white-shadow);
+
+    transition: 1.5s;
+  }
+    .addToList:active .addIcon {
+      margin-top: 8px;
+    }
+
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+  .AddToList {
+    width: 20%;
+    margin-right: 10%;
+  }
+}

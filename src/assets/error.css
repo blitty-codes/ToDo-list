@@ -1,0 +1,41 @@
+@import "./vars.css";
+
+.position {
+  padding-top: 100px;
+}
+
+  .alert {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    box-shadow: 2px 6px 10px 0 var(--black-shadow),
+      -2px -5px 15px 0 var(--white2-shadow);
+  }
+
+  .alert p {
+    color: var(--txt-color);
+    font-family: var(--main-font);
+    font-size: 1.5em;
+    text-align: center;
+
+    user-select: none;
+  }
+  .alert span {
+    color: var(--error-color);
+  }
+    .contact {
+      width: fit-content;    
+      margin: auto;
+    }
+      .contact-t, .contact-g {
+        font-size: 4em;
+      }
+      .contact-t { 
+        color: #1da1f2;
+        margin-right: 2em;
+      }
+      .contact-g { color: #24292e; }
+      .contact-t:hover, .contact-g:hover {
+        cursor: pointer;
+      }
