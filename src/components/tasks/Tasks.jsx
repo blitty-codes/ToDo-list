@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 import TaskCard from './TaskCard'
 
-import '../assets/card.css'
-import '../config/config'
+import '../../assets/card.css'
+import '../../config/config'
 
 // eslint-disable-next-line react/prop-types
 const Tasks = ({ update }) => {

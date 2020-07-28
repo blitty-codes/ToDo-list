@@ -3,8 +3,8 @@ import React, { useRef } from 'react'
 import { IconContext } from 'react-icons'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 
-import '../assets/add.css'
-import '../config/config'
+import '../../assets/add.css'
+import '../../config/config'
 
 // eslint-disable-next-line react/prop-types
 const Add = ({ onUpdate }) => {

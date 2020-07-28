@@ -1,7 +1,8 @@
 import React from 'react'
 import Container from './Container'
-import Add from './Add'
-import Tasks from './Tasks'
+import Add from './tasks/Add'
+import Tasks from './tasks/Tasks'
+import Options from './tasks/Options'
 
 import '../assets/app.css'
 
@@ -10,6 +11,7 @@ const App = () => (
   <div className="center">
     <Container>
       <Add />
+      <Options />
       <hr />
       <Tasks />
     </Container>
