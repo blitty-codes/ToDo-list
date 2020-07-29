@@ -1,0 +1,73 @@
+@import './vars.css';
+
+
+.container-buttons {
+  display: flex;
+
+  margin-top: 20px;
+}
+  .txt {
+    margin: 0;
+    margin-top: 5px;
+
+    color: var(--txt-color);
+    font-family: var(--main-font);
+    text-align: center;
+  }
+
+  .button-done, .button-notDone {
+    width: 100px;
+    height: 100px;
+
+    margin: auto;
+
+    border-radius: 50px;
+    border-style: none;
+  
+    outline: none;
+
+    background-color: transparent;
+  }
+
+  .button-notDone:hover, .button-done:hover {
+    cursor: pointer;
+  }
+
+  .button-done:hover p { color: var(--green-color); }
+  .button-done:hover .done { fill: var(--green-color); }
+  .button-notDone:hover p { color: var(--color); }
+  .button-notDone:hover .notDone { fill: var(--color); }
+
+  /*
+    When action (pressed, clicked) to .button-done or .button-notDone
+    in CSS is going to make the button with the shadow inset, the color
+    and fill is going to be its color. And it is going to show all the
+    tasks that has been done or NotDoned.
+
+    When the action is done by a second time, the buttons comes to the
+    initial state. It returns to the place where are the tasks
+  */
+
+
+  .shadowOut {
+    box-shadow: 12px 12px 16px 0 var(--black-shadow),
+      -8px -8px 12px 0 var(--white-shadow);
+  }
+  .shadowIn {
+    box-shadow: inset 5px 5px 10px 0 var(--black-shadow),
+      inset -3px -3px 10px 0 var(--white-shadow);
+  }
+
+  .sizeIcons {
+    font-size: 30px;
+  }
+  .donePress {
+    color: var(--green-color);
+  }
+  .delPress {
+    color: var(--color);
+  }
+
+  .option {
+    margin: 0;
+  }

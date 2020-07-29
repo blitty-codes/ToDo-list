@@ -1,9 +1,8 @@
 @import "./vars.css";
 
 /* Styles for the container of the tasks */
-.tasks-container {
-  height: 80%;
-  
+.tasks-container { 
+  height: 65%; 
   margin-top: 10px;
   overflow: auto;
 
@@ -48,7 +47,7 @@
   
   background-color: transparent;
 }
-  .done, .delete, .card-container p {
+  .done, .delete, .notDone, .card-container p {
     color: var(--txt-color);
     font-family: var(--main-font);
   }
@@ -75,22 +74,20 @@
     width: fit-content;
     height: fit-content;
   }
-  .done, .delete { 
+  .done, .delete, .notDone { 
     font-size: 30px;
     fill: #b3b3b3;
   }
   .delete { margin-right: 20px; }
-  .done { margin-right: 5px; }
-  .delete:hover, .done:hover { cursor: pointer; }
-  .delete:hover {
-    fill: var(--red-color);
-  }
-  .done:hover {
-    fill: var(--green-color);
-  }
+  .done, .notDone { margin-right: 5px; }
+  .delete:hover, .done:hover, .notDone:hover { cursor: pointer; }
+  .delete:hover { fill: var(--red-color); }
+  .done:hover { fill: var(--green-color); }
+  .notDone:hover { fill: var(--color); }
 
 @media only screen and (max-width: 768px) {
   .tasks-container {
+    height: 60%;
     margin-top: 20px;
   }
   .card-container {
