@@ -21,17 +21,17 @@ const Tasks = ({ update }) => {
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
-    let storage = localStorage.getItem(global.nameStorage)
-    storage = JSON.parse(storage)
-
-    if (storage !== null && storage !== undefined) { setTasks(storage) }
+    const storage = JSON.parse(localStorage.getItem(global.nameStorage))
+    if (storage !== null && storage !== undefined && storage.length !== 0) { setTasks(storage) }
+    // console.log(tasks, storage);
   }, [update])
 
   return (
     <div className="tasks-container">
-      {tasks !== undefined && tasks.map((task) => (
+      {tasks !== null && tasks.map((task) => (
         <TaskCard
           task={task.msg}
+          id={task.id}
           key={task.id}
         />
       ))}

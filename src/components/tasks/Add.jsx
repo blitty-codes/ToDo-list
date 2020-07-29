@@ -15,10 +15,9 @@ const Add = ({ onUpdate }) => {
   const addTODO = () => {
     const todo = taskRef.current.value
     if (!isEmpty(todo)) {
-      let todos = localStorage.getItem(global.nameStorage)
+      let todos = JSON.parse(localStorage.getItem(global.nameStorage))
 
       if (todos !== null) {
-        todos = JSON.parse(todos)
         todos.push({
           id: todos.length,
           msg: todo
