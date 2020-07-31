@@ -81,9 +81,14 @@
   .delete { margin-right: 20px; }
   .done, .notDone { margin-right: 5px; }
   .delete:hover, .done:hover, .notDone:hover { cursor: pointer; }
-  .delete:hover { fill: var(--red-color); }
+  .delete:hover { fill: var(--delete-color); }
   .done:hover { fill: var(--green-color); }
-  .notDone:hover { fill: var(--color); }
+  .notDone:hover { fill: var(--red-color); }
+
+  /* To show that the task is done or not */
+  .notDoneTask, .doneTask { font-size: 30px; margin-right: 5px; }
+  .notDoneTask { fill: var(--red-color); }
+  .doneTask { fill: var(--green-color); }
 
 @media only screen and (max-width: 768px) {
   .tasks-container {

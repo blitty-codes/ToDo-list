@@ -35,8 +35,8 @@
 
   .button-done:hover p { color: var(--green-color); }
   .button-done:hover .done { fill: var(--green-color); }
-  .button-notDone:hover p { color: var(--color); }
-  .button-notDone:hover .notDone { fill: var(--color); }
+  .button-notDone:hover p { color: var(--red-color); }
+  .button-notDone:hover .notDone { fill: var(--red-color); }
 
   /*
     When action (pressed, clicked) to .button-done or .button-notDone
@@ -65,7 +65,7 @@
     color: var(--green-color);
   }
   .delPress {
-    color: var(--color);
+    color: var(--red-color);
   }
 
   .option {
