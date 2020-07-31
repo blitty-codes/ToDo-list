@@ -2,7 +2,7 @@
 
 /* Styles for the container of the tasks */
 .tasks-container { 
-  height: 65%; 
+  height: 60%; 
   margin-top: 10px;
   overflow: auto;
 
@@ -101,4 +101,9 @@
     .task-place {
       width: 100%;
     }
+}
+@media only screen and (max-width: 320px) {
+  .task-place {
+    width: 50%;
+  }
 }
