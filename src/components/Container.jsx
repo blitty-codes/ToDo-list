@@ -4,12 +4,14 @@ import Error from './Error'
 
 const Container = ({ children }) => {
   const [update, setUpdate] = useState(0)
+  const [state, setState] = useState(-1)
 
   if (!children) {
     return <Error />
   }
 
   const increment = () => setUpdate(update + 1)
+  const changeState = (a) => setState(a)
 
   const _children = React.Children.map(children, (child) => {
     // console.log(child)
@@ -20,6 +22,10 @@ const Container = ({ children }) => {
     }
     if (child.type.name === 'Tasks') {
       props.update = update
+      props.state = state
+    }
+    if (child.type.name === 'Options') {
+      props.stateTask = changeState
     }
 
     return React.cloneElement(child, props)
