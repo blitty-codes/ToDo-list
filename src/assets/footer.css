@@ -1,0 +1,21 @@
+.footer {
+  margin-top: 10%;
+  padding-bottom: 5px;
+  color: #c5c5c5;
+  font-family: 'Mansalva', cursive;
+  font-size: 1.05em;
+  text-align: center;
+}
+  .name {
+    margin-bottom: 5px;
+  }
+  .contact-t, .contact-g {
+    font-size: 2em;
+  }
+  .contact-t {
+    color: #50baed;
+    margin-right: 1em;
+  }
+  .contact-g {
+    color: #24292e;
+  }
