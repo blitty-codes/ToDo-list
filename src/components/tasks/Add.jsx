@@ -31,7 +31,7 @@ const Add = ({ onUpdate }) => {
         ]
       }
 
-      console.log(todos)
+      // console.log(todos)
 
       localStorage.setItem(global.nameStorage, JSON.stringify(todos))
 
