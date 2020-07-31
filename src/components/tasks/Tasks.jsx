@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable no-undef */
+import React, { useLayoutEffect, useState } from 'react'
 
 import TaskCard from './TaskCard'
 
@@ -6,32 +7,74 @@ import '../../assets/card.css'
 import '../../config/config'
 
 // eslint-disable-next-line react/prop-types
-const Tasks = ({ update }) => {
+const Tasks = ({ update, state }) => {
   const tasksP = [
     {
-      id: 0,
+      id: -1,
       msg: 'You can add any task'
     },
     {
-      id: 1,
+      id: -2,
       msg: 'This tasks will disapear'
     }
   ]
-  const [tasks, setTasks] = useState(tasksP)
+  const [tasks, setTasks] = useState()
+  const [less, setLess] = useState(0)
 
-  useEffect(() => {
-    // eslint-disable-next-line no-undef
-    const storage = JSON.parse(localStorage.getItem(global.nameStorage))
-    if (storage !== null && storage !== undefined && storage.length !== 0) { setTasks(storage) }
-    // console.log(tasks, storage);
-  }, [update])
+  useLayoutEffect(() => {
+    let storage
+    if (state === 0) { storage = JSON.parse(localStorage.getItem(global.todosNotDone)) }
+    if (state === 1) { storage = JSON.parse(localStorage.getItem(global.todosDone)) }
+    if (state === -1) { storage = JSON.parse(localStorage.getItem(global.nameStorage)) }
+
+    if (Array.isArray(storage) && storage.length !== 0) { setTasks(storage) } else setTasks(tasksP)
+  }, [update, less, state])
+
+  // eliminates the TODO from any localstorage
+  const transferTODO = (id) => {
+    let nameStor
+    if (state === -1) { nameStor = global.nameStorage }
+    else if (state === 0) { nameStor = global.todosNotDone }
+    else if (state === 1) { nameStor = global.todosDone }
+    const todos = JSON.parse(localStorage.getItem(nameStor))
+
+    if (Array.isArray(todos)) {
+      todos.map((elem) => {
+        console.log(elem)
+        const idElem = elem.id
+        if (idElem > id) { // move elements
+          todos[idElem - 1] = todos[idElem] // change position to the newest
+          elem.id--
+        }
+      })
+      todos.pop() // eliminate the last elem, that is the only copy
+    }
+    localStorage.setItem(nameStor, JSON.stringify(todos))
+    setLess(less + 1)
+  }
 
   return (
     <div className="tasks-container">
-      {tasks !== null && tasks.map((task) => (
+      {state === 0 && (Array.isArray(tasks) || tasks.length === 0) && (
         <TaskCard
+          task="No tasks has not been acomplished"
+          id={-1}
+          state={-1}
+        />
+      )}
+      {state === 1 && (Array.isArray(tasks) || tasks.length === 0) && (
+        <TaskCard
+          task="No tasks has been acomplished"
+          id={-1}
+          state={-1}
+        />
+      )}
+      {state === -1 && Array.isArray(tasks) && tasks.map((task) => (
+        <TaskCard
+          transferTODO={transferTODO}
           task={task.msg}
           id={task.id}
+          state={state}
           key={task.id}
         />
       ))}
