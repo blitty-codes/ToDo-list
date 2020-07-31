@@ -11,7 +11,7 @@ const Container = ({ children }) => {
   }
 
   const onUpdate = () => setUpdate(update + 1)
-  const changeState = (a) => setState(a)
+  const changeState = (someState) => setState(someState)
 
   const _children = React.Children.map(children, (child) => {
     // console.log(child)
