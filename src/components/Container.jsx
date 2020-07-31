@@ -10,7 +10,7 @@ const Container = ({ children }) => {
     return <Error />
   }
 
-  const increment = () => setUpdate(update + 1)
+  const onUpdate = () => setUpdate(update + 1)
   const changeState = (a) => setState(a)
 
   const _children = React.Children.map(children, (child) => {
@@ -18,7 +18,7 @@ const Container = ({ children }) => {
     let props = {}
 
     if (child.type.name === 'Add') {
-      props.onUpdate = increment
+      props.onUpdate = onUpdate
     }
     if (child.type.name === 'Tasks') {
       props.update = update
