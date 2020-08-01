@@ -27,20 +27,17 @@ const Tasks = ({ update, state }) => {
     if (state === 1) { storage = JSON.parse(localStorage.getItem(global.todosDone)) }
     if (state === -1) { storage = JSON.parse(localStorage.getItem(global.nameStorage)) }
 
-    if (Array.isArray(storage) && storage.length !== 0) { setTasks(storage) } else setTasks(tasksP)
+    if (Array.isArray(storage) && storage.length !== 0) { setTasks(storage) } else setTasks(null)
   }, [update, less, state])
 
   // eliminates the TODO from any localstorage
   const transferTODO = (id) => {
     let nameStor
-    if (state === -1) { nameStor = global.nameStorage }
-    else if (state === 0) { nameStor = global.todosNotDone }
-    else if (state === 1) { nameStor = global.todosDone }
+    if (state === -1) { nameStor = global.nameStorage } else if (state === 0) { nameStor = global.todosNotDone } else if (state === 1) { nameStor = global.todosDone }
     const todos = JSON.parse(localStorage.getItem(nameStor))
 
     if (Array.isArray(todos)) {
       todos.map((elem) => {
-        console.log(elem)
         const idElem = elem.id
         if (idElem > id) { // move elements
           todos[idElem - 1] = todos[idElem] // change position to the newest
@@ -55,29 +52,26 @@ const Tasks = ({ update, state }) => {
 
   return (
     <div className="tasks-container">
-      {state === 0 && (Array.isArray(tasks) || tasks.length === 0) && (
-        <TaskCard
-          task="No tasks has not been acomplished"
-          id={-1}
-          state={-1}
-        />
+      {state === -1 && !Array.isArray(tasks) &&
+        tasksP.map((task) => (
+          <TaskCard task={task.msg} id={task.id} state={state} key={task.id} />
+        ))}
+      {state === 0 && !Array.isArray(tasks) && (
+        <TaskCard task="No tasks has not been acomplished" id={-1} state={-1} />
       )}
-      {state === 1 && (Array.isArray(tasks) || tasks.length === 0) && (
-        <TaskCard
-          task="No tasks has been acomplished"
-          id={-1}
-          state={-1}
-        />
+      {state === 1 && !Array.isArray(tasks) && (
+        <TaskCard task="No tasks has been acomplished" id={-1} state={-1} />
       )}
-      {state === -1 && Array.isArray(tasks) && tasks.map((task) => (
-        <TaskCard
-          transferTODO={transferTODO}
-          task={task.msg}
-          id={task.id}
-          state={state}
-          key={task.id}
-        />
-      ))}
+      {Array.isArray(tasks) && tasks.length !== 0 &&
+        tasks.map((task) => (
+          <TaskCard
+            transferTODO={transferTODO}
+            task={task.msg}
+            id={task.id}
+            state={state}
+            key={task.id}
+          />
+        ))}
     </div>
   )
 }
