@@ -1,37 +1,27 @@
 /* eslint-disable prefer-const */
 import React, { useState } from 'react'
-import Error from './Error'
+import Add from './tasks/Add'
+import Tasks from './tasks/Tasks'
+import Options from './tasks/Options'
+import Footer from './Footer'
 
 const Container = ({ children }) => {
   const [update, setUpdate] = useState(0)
   const [state, setState] = useState(-1)
 
-  if (!children) {
-    return <Error />
-  }
-
   const onUpdate = () => setUpdate(update + 1)
   const changeState = (someState) => setState(someState)
 
-  const _children = React.Children.map(children, (child) => {
-    // console.log(child)
-    let props = {}
+  return (
+    <>
+      <Add onUpdate={onUpdate} />
+      <Options stateTask={changeState} />
+      <hr />
+      <Tasks update={update} state={state}/>
+      <Footer />
+    </>
+  );
 
-    if (child.type.name === 'Add') {
-      props.onUpdate = onUpdate
-    }
-    if (child.type.name === 'Tasks') {
-      props.update = update
-      props.state = state
-    }
-    if (child.type.name === 'Options') {
-      props.stateTask = changeState
-    }
-
-    return React.cloneElement(child, props)
-  })
-
-  return _children
 }
 
 export default Container
