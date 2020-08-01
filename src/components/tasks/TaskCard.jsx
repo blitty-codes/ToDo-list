@@ -18,48 +18,54 @@ const TaskCard = ({ task, id, transferTODO, state }) => {
 
   const taskDone = () => {
     if (id !== -1 && id !== -2) {
-      let todosDone = localStorage.getItem(global.todosDone)
+      let todosDone = JSON.parse(localStorage.getItem(global.todosDone))
 
-      transferTODO(id)
-      if (todosDone !== null) {
-        todosDone = JSON.parse(todosDone)
-        todosDone.push({
-          id: todosDone.length,
-          msg: task
-        })
-      } else {
-        todosDone = [
-          {
-            id: 0,
-            msg: task
-          }
-        ]
+      if (state !== 1) {
+        transferTODO(id)
+        if (todosDone !== null) {
+          todosDone.push({
+            id: todosDone.length,
+            msg: task,
+            state: state
+          })
+        } else {
+          todosDone = [
+            {
+              id: 0,
+              msg: task,
+              state: state
+            }
+          ]
+        }
+
+        localStorage.setItem(global.todosDone, JSON.stringify(todosDone))
       }
-
-      localStorage.setItem(global.todosDone, JSON.stringify(todosDone))
     }
   }
   const taskNotDone = () => {
     if (id !== -1 && id !== -2) {
-      let todosNotDone = localStorage.getItem(global.todosNotDone)
+      let todosNotDone = JSON.parse(localStorage.getItem(global.todosNotDone))
 
-      transferTODO(id)
-      if (todosNotDone !== null) {
-        todosNotDone = JSON.parse(todosNotDone)
-        todosNotDone.push({
-          id: todosNotDone.length,
-          msg: task
-        })
-      } else {
-        todosNotDone = [
-          {
-            id: 0,
-            msg: task
-          }
-        ]
+      if (state !== 0) {
+        transferTODO(id)
+        if (todosNotDone !== null) {
+          todosNotDone.push({
+            id: todosNotDone.length,
+            msg: task,
+            state: state
+          })
+        } else {
+          todosNotDone = [
+            {
+              id: 0,
+              msg: task,
+              state: state
+            }
+          ]
+        }
+
+        localStorage.setItem(global.todosNotDone, JSON.stringify(todosNotDone))
       }
-
-      localStorage.setItem(global.todosNotDone, JSON.stringify(todosNotDone))
     }
   }
 
