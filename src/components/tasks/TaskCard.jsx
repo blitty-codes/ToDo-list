@@ -25,15 +25,13 @@ const TaskCard = ({ task, id, transferTODO, state }) => {
         if (todosDone !== null) {
           todosDone.push({
             id: todosDone.length,
-            msg: task,
-            state: state
+            msg: task
           })
         } else {
           todosDone = [
             {
               id: 0,
-              msg: task,
-              state: state
+              msg: task
             }
           ]
         }
@@ -51,21 +49,24 @@ const TaskCard = ({ task, id, transferTODO, state }) => {
         if (todosNotDone !== null) {
           todosNotDone.push({
             id: todosNotDone.length,
-            msg: task,
-            state: state
+            msg: task
           })
         } else {
           todosNotDone = [
             {
               id: 0,
-              msg: task,
-              state: state
+              msg: task
             }
           ]
         }
 
         localStorage.setItem(global.todosNotDone, JSON.stringify(todosNotDone))
       }
+    }
+  }
+  const eliminateTask = () => {
+    if (id !== -1 && id !== -2) {
+      transferTODO(id)
     }
   }
 
@@ -85,7 +86,7 @@ const TaskCard = ({ task, id, transferTODO, state }) => {
             className={`${state === 0 ? 'notDoneTask' : 'notDone'}`}
           />
         </span>
-        <span onClick={transferTODO}>
+        <span onClick={eliminateTask}>
           <AiFillDelete
             className="delete"
           />

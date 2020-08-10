@@ -33,7 +33,9 @@ const Tasks = ({ update, state }) => {
   // eliminates the TODO from any localstorage
   const transferTODO = (id) => {
     let nameStor
-    if (state === -1) { nameStor = global.nameStorage } else if (state === 0) { nameStor = global.todosNotDone } else if (state === 1) { nameStor = global.todosDone }
+    if (state === -1) { nameStor = global.nameStorage }
+    if (state === 0) { nameStor = global.todosNotDone }
+    if (state === 1) { nameStor = global.todosDone }
     const todos = JSON.parse(localStorage.getItem(nameStor))
 
     if (Array.isArray(todos)) {
