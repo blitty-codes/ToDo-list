@@ -47,7 +47,7 @@
   
   background-color: transparent;
 }
-  .done, .delete, .notDone, .card-container p {
+  .done, .delete, .notDone, .card-container p, h1 {
     color: var(--txt-color);
     font-family: var(--main-font);
   }
@@ -56,7 +56,11 @@
 
     overflow-wrap: break-word;
   }
-  .card-container p {
+  h1 { text-align: center; }
+  .acomp-txt { color: var(--green-color); }
+  .failed-txt { color: var(--red-color); }
+  .task-txt { color: black; }
+  .card-container p, h1 {
     margin: 0;
 
     padding-left: 1em;

@@ -8,16 +8,6 @@ import '../../config/config'
 
 // eslint-disable-next-line react/prop-types
 const Tasks = ({ update, state }) => {
-  const tasksP = [
-    {
-      id: -1,
-      msg: 'You can add any task'
-    },
-    {
-      id: -2,
-      msg: 'This tasks will disapear'
-    }
-  ]
   const [tasks, setTasks] = useState()
   const [less, setLess] = useState(0)
 
@@ -54,17 +44,25 @@ const Tasks = ({ update, state }) => {
 
   return (
     <div className="tasks-container">
-      {state === -1 && !Array.isArray(tasks) &&
-        tasksP.map((task) => (
-          <TaskCard task={task.msg} id={task.id} state={state} key={task.id} />
-        ))}
+      {state === -1 &&
+        !Array.isArray(tasks) && (
+        <h1>
+          Here you can add any <span className="task-txt">task</span>
+        </h1>
+      )
+      }
       {state === 0 && !Array.isArray(tasks) && (
-        <TaskCard task="No tasks has not been acomplished" id={-1} state={-1} />
+        <h1>
+          No tasks has been <span className="failed-txt">failed</span>
+        </h1>
       )}
       {state === 1 && !Array.isArray(tasks) && (
-        <TaskCard task="No tasks has been acomplished" id={-1} state={-1} />
+        <h1>
+          No tasks has been <span className="acomp-txt">acomplished</span>
+        </h1>
       )}
-      {Array.isArray(tasks) && tasks.length !== 0 &&
+      {Array.isArray(tasks) &&
+        tasks.length !== 0 &&
         tasks.map((task) => (
           <TaskCard
             transferTODO={transferTODO}
