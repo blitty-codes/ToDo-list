@@ -78,16 +78,17 @@
     width: fit-content;
     height: fit-content;
   }
-  .done, .delete, .notDone { 
+  .done, .delete, .notDone, .recycle { 
     font-size: 30px;
     fill: #b3b3b3;
   }
   .delete { margin-right: 20px; }
-  .done, .notDone { margin-right: 5px; }
-  .delete:hover, .done:hover, .notDone:hover { cursor: pointer; }
+  .done, .notDone, .recycle { margin-right: 5px; }
+  .delete:hover, .done:hover, .notDone:hover, .recycle:hover { cursor: pointer; }
   .delete:hover { fill: var(--delete-color); }
   .done:hover { fill: var(--green-color); }
   .notDone:hover { fill: var(--red-color); }
+  .recycle:hover { fill: var(--recycle-color); }
 
   /* To show that the task is done or not */
   .notDoneTask, .doneTask { font-size: 30px; margin-right: 5px; }

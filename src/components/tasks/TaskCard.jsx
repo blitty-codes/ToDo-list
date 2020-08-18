@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react'
 import { AiFillLike, AiFillDislike, AiFillDelete } from 'react-icons/ai'
+import { FaRecycle } from 'react-icons/fa'
 
 import '../../assets/card.css'
 import '../../config/config'
@@ -17,57 +18,74 @@ const TaskCard = ({ task, id, transferTODO, state }) => {
   // the person tries to achive
 
   const taskDone = () => {
-    if (id !== -1 && id !== -2) {
-      let todosDone = JSON.parse(localStorage.getItem(global.todosDone))
+    let todosDone = JSON.parse(localStorage.getItem(global.todosDone))
 
-      if (state !== 1) {
-        transferTODO(id)
-        if (todosDone !== null) {
-          todosDone.push({
-            id: todosDone.length,
+    if (state !== 1) {
+      transferTODO(id)
+      if (todosDone !== null) {
+        todosDone.push({
+          id: todosDone.length,
+          msg: task
+        })
+      } else {
+        todosDone = [
+          {
+            id: 0,
             msg: task
-          })
-        } else {
-          todosDone = [
-            {
-              id: 0,
-              msg: task
-            }
-          ]
-        }
-
-        localStorage.setItem(global.todosDone, JSON.stringify(todosDone))
+          }
+        ]
       }
+
+      localStorage.setItem(global.todosDone, JSON.stringify(todosDone))
     }
   }
   const taskNotDone = () => {
-    if (id !== -1 && id !== -2) {
-      let todosNotDone = JSON.parse(localStorage.getItem(global.todosNotDone))
+    let todosNotDone = JSON.parse(localStorage.getItem(global.todosNotDone))
 
-      if (state !== 0) {
-        transferTODO(id)
-        if (todosNotDone !== null) {
-          todosNotDone.push({
-            id: todosNotDone.length,
+    if (state !== 0) {
+      transferTODO(id)
+      if (todosNotDone !== null) {
+        todosNotDone.push({
+          id: todosNotDone.length,
+          msg: task
+        })
+      } else {
+        todosNotDone = [
+          {
+            id: 0,
             msg: task
-          })
-        } else {
-          todosNotDone = [
-            {
-              id: 0,
-              msg: task
-            }
-          ]
-        }
-
-        localStorage.setItem(global.todosNotDone, JSON.stringify(todosNotDone))
+          }
+        ]
       }
+
+      localStorage.setItem(global.todosNotDone, JSON.stringify(todosNotDone))
     }
   }
-  const eliminateTask = () => {
-    if (id !== -1 && id !== -2) {
+  const recycleTask = () => {
+    let todos = JSON.parse(localStorage.getItem(global.nameStorage))
+
+    if (state !== -1) {
       transferTODO(id)
+      if (todos !== null) {
+        todos.push({
+          id: todos.length,
+          msg: task
+        })
+      } else {
+        todos = [
+          {
+            id: 0,
+            msg: task
+          }
+        ]
+      }
+
+      localStorage.setItem(global.nameStorage, JSON.stringify(todos))
     }
+  }
+
+  const eliminateTask = () => {
+    transferTODO(id)
   }
 
   return (
@@ -76,16 +94,27 @@ const TaskCard = ({ task, id, transferTODO, state }) => {
         <p>{task}</p>
       </div>
       <div className="buttons">
-        <span onClick={taskDone}>
-          <AiFillLike
-            className={`${state === 1 ? 'doneTask' : 'done'}`}
-          />
-        </span>
-        <span onClick={taskNotDone}>
-          <AiFillDislike
-            className={`${state === 0 ? 'notDoneTask' : 'notDone'}`}
-          />
-        </span>
+        {state !== 1 && (
+          <span onClick={taskDone}>
+            <AiFillLike
+              className={`${state === 1 ? 'doneTask' : 'done'}`}
+            />
+          </span>
+        )}
+        {state !== 0 && (
+          <span onClick={taskNotDone}>
+            <AiFillDislike
+              className={`${state === 0 ? 'notDoneTask' : 'notDone'}`}
+            />
+          </span>
+        )}
+        {state !== -1 && (
+          <span onClick={recycleTask}>
+            <FaRecycle
+              className="recycle"
+            />
+          </span>
+        )}
         <span onClick={eliminateTask}>
           <AiFillDelete
             className="delete"
