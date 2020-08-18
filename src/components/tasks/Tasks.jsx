@@ -49,8 +49,7 @@ const Tasks = ({ update, state }) => {
         <h1>
           Here you can add any <span className="task-txt">task</span>
         </h1>
-      )
-      }
+      )}
       {state === 0 && !Array.isArray(tasks) && (
         <h1>
           No tasks has been <span className="failed-txt">failed</span>

@@ -96,29 +96,37 @@ const TaskCard = ({ task, id, transferTODO, state }) => {
       <div className="buttons">
         {state !== 1 && (
           <span onClick={taskDone}>
-            <AiFillLike
-              className={`${state === 1 ? 'doneTask' : 'done'}`}
-            />
+            <abbr title="Done">
+              <AiFillLike
+                className={`${state === 1 ? 'doneTask' : 'done'}`}
+              />
+            </abbr>
           </span>
         )}
         {state !== 0 && (
           <span onClick={taskNotDone}>
-            <AiFillDislike
-              className={`${state === 0 ? 'notDoneTask' : 'notDone'}`}
-            />
+            <abbr title="Not done">
+              <AiFillDislike
+                className={`${state === 0 ? 'notDoneTask' : 'notDone'}`}
+              />
+            </abbr>
           </span>
         )}
         {state !== -1 && (
           <span onClick={recycleTask}>
-            <FaRecycle
-              className="recycle"
-            />
+            <abbr title="Recycle">
+              <FaRecycle
+                className="recycle"
+              />
+            </abbr>
           </span>
         )}
         <span onClick={eliminateTask}>
-          <AiFillDelete
-            className="delete"
-          />
+          <abbr title="Eliminate">
+            <AiFillDelete
+              className="delete"
+            />
+          </abbr>
         </span>
       </div>
     </div>
